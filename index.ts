@@ -1,26 +1,20 @@
-/**
- * Configure logger
- * ref: https://github.com/log4js-node/log4js-node
- */
-import log4js from 'log4js'
-log4js.configure({
-    appenders: {
-        out: { type: 'console' },
-    },
-    categories: {
-        default: { appenders: ['out'], level: 'warn' },
-    },
-})
+import logger from './logger.ts'
+import repl from './repl.ts'
 
 /**
  * Main function when launched this file directly
  */
-function main() {
-    let logger = log4js.getLogger('devguru-lang')
+async function main() {
     logger.level = 'trace'
 
     logger.info('Starting devguru-lang interpreter')
-    logger.info('Terminating interpreter')
+
+    logger.info('Start REPL using stdin')
+    let result = await repl(process.stdin)
+
+    logger.info('Terminating interpreter with a result = %d', result)
+
+    process.exit(result)
 }
 
 /**
