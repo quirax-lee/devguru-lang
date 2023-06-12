@@ -17,7 +17,7 @@ async function main() {
     let argv = minimist(process.argv.slice(2))
     // argv example:
     // argv = {
-    //     _: [] // script file name
+    //     _: [ "dev.guru" ] // script file name
     // }
 
     logger.debug('argv = %s', argv)
