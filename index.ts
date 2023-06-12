@@ -1,3 +1,7 @@
+import fs from 'node:fs'
+
+import minimist from 'minimist'
+
 import logger from './logger.ts'
 import repl from './repl.ts'
 
@@ -9,8 +13,25 @@ async function main() {
 
     logger.info('Starting devguru-lang interpreter')
 
-    logger.info('Start REPL using stdin')
-    let result = await repl(process.stdin)
+    logger.debug('Analyzing command line arguments')
+    let argv = minimist(process.argv.slice(2))
+    // argv example:
+    // argv = {
+    //     _: [] // script file name
+    // }
+
+    logger.debug('argv = %s', argv)
+
+    let result = -1
+
+    if (argv._.length === 0) {
+        // No script file specified. Use stdin
+        logger.info('Starting REPL using stdin')
+        result = await repl(process.stdin)
+    } else {
+        logger.info('Starting REPL using a file "%s"', argv._[0])
+        result = await repl(fs.createReadStream(argv._[0]))
+    }
 
     logger.info('Terminating interpreter with a result = %d', result)
 
