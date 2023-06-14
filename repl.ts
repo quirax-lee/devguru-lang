@@ -3,6 +3,8 @@ import { Readable } from 'node:stream'
 
 import logger from './logger.ts'
 
+import tokenize from './tokenize.ts'
+
 function repl(stream: Readable): Promise<number> {
     return new Promise<number>((resolve, reject) => {
         logger.trace('Create interface between input stream and stdout')
@@ -16,10 +18,10 @@ function repl(stream: Readable): Promise<number> {
         rl.prompt()
 
         // Event when input stream has data
-        rl.on('line', (script: String) => {
+        rl.on('line', (script: string) => {
             logger.debug('Input = "%s"', script)
 
-            // TODO: Process script string here
+            logger.debug('Tokenized = %s', tokenize(script))
 
             logger.trace('Prompt to listen')
             rl.prompt()
