@@ -1,5 +1,5 @@
 import Operator from './expression/nonterminal'
-import { Checkpoint, Memory, Register } from './expression/terminal'
+import { Checkpoint, Memory, Register } from './expression/terminal.ts'
 
 export class IndexOutOfRangeError extends Error {
     constructor() {
