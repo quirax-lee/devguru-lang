@@ -1,7 +1,7 @@
 import Operator from './expression/nonterminal'
 import { Checkpoint, Memory, Register } from './expression/terminal'
 
-class IndexOutOfRangeError extends Error {
+export class IndexOutOfRangeError extends Error {
     constructor() {
         super()
         this.name = 'IndexOutOfRangeError'
@@ -39,7 +39,7 @@ export default class Machine {
 
     public getMemory(idx: number): Memory {
         if (idx < 1 || idx > 255) throw new IndexOutOfRangeError()
-        return this.memory[idx]
+        return this.memory[idx - 1]
     }
 
     public getAccumulator(): Register {
@@ -56,6 +56,6 @@ export default class Machine {
 
     public getCheckpoint(idx: number): Checkpoint {
         if (idx < 1 || idx > 255) throw new IndexOutOfRangeError()
-        return this.checkpoint[idx]
+        return this.checkpoint[idx - 1]
     }
 }
