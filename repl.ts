@@ -3,10 +3,12 @@ import { Readable } from 'node:stream'
 
 import logger from './logger.ts'
 
-import tokenize from './tokenize.ts'
+import Interpreter from './interpreter.ts'
 
 function repl(stream: Readable): Promise<number> {
     return new Promise<number>((resolve, reject) => {
+        let interpreter = new Interpreter()
+
         logger.trace('Create interface between input stream and stdout')
         let rl = readline.createInterface({
             input: stream,
@@ -21,7 +23,8 @@ function repl(stream: Readable): Promise<number> {
         rl.on('line', (script: string) => {
             logger.debug('Input = "%s"', script)
 
-            logger.debug('Tokenized = %s', tokenize(script))
+            interpreter.tokenize(script)
+            interpreter.run()
 
             logger.trace('Prompt to listen')
             rl.prompt()
