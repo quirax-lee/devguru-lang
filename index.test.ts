@@ -7,6 +7,7 @@ describe('Default test', () => {
             run: (machine) => {
                 it('test', () => {
                     expect(machine.getAccumulator().run()).toBe(0)
+                    machine.getMemory(1).set(1)
                 })
             },
         },
@@ -14,7 +15,7 @@ describe('Default test', () => {
             script: '456456',
             run: (machine) => {
                 it('test', () => {
-                    expect(machine.getMemory(1).run()).toBe(0)
+                    expect(machine.getMemory(1).run()).toBe(1)
                 })
             },
         },
