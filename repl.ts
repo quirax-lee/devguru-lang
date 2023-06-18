@@ -23,8 +23,8 @@ function repl(stream: Readable): Promise<number> {
         rl.on('line', (script: string) => {
             logger.debug('Input = "%s"', script)
 
-            interpreter.tokenize(script)
-            interpreter.run()
+            interpreter.tokenize(script) // 입력된 script를 tokenize
+            interpreter.run() // interpreter를 실행
 
             logger.trace('Prompt to listen')
             rl.prompt()
