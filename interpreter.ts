@@ -6,7 +6,8 @@ import Machine from './machine.ts'
  * 주어진 스크립트를 tokenize하고 실제 수행하는 클래스
  */
 class Interpreter {
-    private machine: Machine = new Machine() // 내부 Machine 객체
+    // (2023. 06. 18.) 테스트용 Interpreter 생성을 위해 machine 객체의 visibility를 protected로 완화
+    protected machine: Machine = new Machine() // 내부 Machine 객체
 
     /**
      * 주어진 스크립트 문자열을 operator 객체 배열로 토큰화
