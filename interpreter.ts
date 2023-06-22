@@ -1,6 +1,9 @@
-import Operator from './expression/nonterminal/index.ts'
+import registerOps from './expression/nonterminal/index.ts'
+import Operator from './expression/nonterminal/operator.ts'
 import logger from './logger.ts'
 import Machine from './machine.ts'
+
+registerOps()
 
 /**
  * 주어진 스크립트를 tokenize하고 실제 수행하는 클래스

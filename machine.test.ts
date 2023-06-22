@@ -1,4 +1,4 @@
-import Operator from './expression/nonterminal'
+import Operator from './expression/nonterminal/operator'
 import { Memory } from './expression/terminal'
 import Machine, { IndexOutOfRangeError } from './machine'
 
