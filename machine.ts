@@ -1,4 +1,4 @@
-import Operator from './expression/nonterminal'
+import Operator from './expression/nonterminal/operator.ts'
 import { Checkpoint, Memory, Register } from './expression/terminal.ts'
 import logger from './logger.ts'
 

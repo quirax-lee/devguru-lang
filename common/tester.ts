@@ -27,15 +27,17 @@ export default function test(
     let interpreter = new DummyInterpreter() // 테스트에 사용할 Interpreter
     let machine = interpreter.getMachine() // interpreter에 내장된 machine
 
-    // 각각의 run 객체에 대하여
-    runs.forEach(({ script, run }) => {
-        describe(`Running script: ${script}`, () => {
-            it('Script runs well', () => {
-                interpreter.tokenize(script) // script를 토큰화하여 machine에 등록
-                interpreter.run() // script를 실행
-            })
+    describe('For a new interpreter session at ' + Math.random(), () => {
+        // 각각의 run 객체에 대하여
+        runs.forEach(({ script, run }) => {
+            describe(`Running script: ${script}`, () => {
+                it('Script runs well', () => {
+                    interpreter.tokenize(script) // script를 토큰화하여 machine에 등록
+                    interpreter.run() // script를 실행
+                })
 
-            run(machine) // Jest 스크립트를 실행
+                run(machine) // Jest 스크립트를 실행
+            })
         })
     })
 }
