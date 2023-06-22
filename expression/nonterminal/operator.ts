@@ -43,6 +43,7 @@ class Operator extends AbstractExpression {
     /**
      * Operator를 생성
      * @param token tokenizer에서 분석한 토큰
+     * @param machine interpreter 내장 machine 객체
      */
     public constructor(token: RegExpMatchArray, machine: Machine) {
         super()
