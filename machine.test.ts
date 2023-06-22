@@ -14,7 +14,7 @@ describe('Machine definition', () => {
     describe('Operator 객체를 push하는 메소드', () => {
         it('Well done', () => {
             for (let i = 0; i < 5; i++) {
-                machine.push(new Operator([i.toString()]))
+                machine.push(new Operator([i.toString()], machine))
             }
         })
 

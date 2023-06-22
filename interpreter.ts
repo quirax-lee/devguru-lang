@@ -27,7 +27,7 @@ class Interpreter {
                         let ab = [...x.matchAll(new RegExp(Op.regexp, 'g'))] // x로부터 명령어 토큰을 찾음
                         return x
                             .split(new RegExp(Op.regexp.split(/\(|\)/).join(''))) // 토큰을 문자열에서 제거
-                            .flatMap((y, i) => [y, ab[i] ? new Op(ab[i]) : '']) // 명령어 객체로 치환
+                            .flatMap((y, i) => [y, ab[i] ? new Op(ab[i], this.machine) : '']) // 명령어 객체로 치환
                     } else return [x] // 이미 객체로 치환된 경우, 그대로 반환
                 })
                 .filter((x) => typeof x !== 'string' || x !== '') // 명령어 객체 또는 비어 있지 않은 문자만 남김

@@ -1,4 +1,5 @@
 import logger from '../../logger.ts'
+import Machine from '../../machine.ts'
 import AbstractExpression from '../index.ts'
 
 /**
@@ -37,15 +38,17 @@ class Operator extends AbstractExpression {
     }
 
     private token: RegExpMatchArray // tokenizer에서 분석한 토큰
+    private machine: Machine // machine 객체
 
     /**
      * Operator를 생성
      * @param token tokenizer에서 분석한 토큰
      */
-    public constructor(token: RegExpMatchArray) {
+    public constructor(token: RegExpMatchArray, machine: Machine) {
         super()
         logger.trace('Creating operator with token %s', token.toString())
         this.token = token
+        this.machine = machine
     }
 
     private getOperandIndex(): number | undefined {
