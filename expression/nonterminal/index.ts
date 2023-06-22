@@ -1,6 +1,7 @@
-import { Increase } from './accMutator.ts'
+import { Decrease, Increase } from './accMutator.ts'
 import Operator from './operator.ts'
 
 export default function registerOps() {
     Operator.register(Increase)
+    Operator.register(Decrease)
 }

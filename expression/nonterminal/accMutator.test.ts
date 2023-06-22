@@ -19,3 +19,41 @@ test([
         },
     },
 ])
+
+test([
+    {
+        script: 'dddddddd',
+        run: (machine) => {
+            it('Accumulator is -8', () => {
+                expect(machine.getAccumulator().get()).toBe(-8)
+            })
+        },
+    },
+    {
+        script: 'ddddd',
+        run: (machine) => {
+            it('Accumulator is -13', () => {
+                expect(machine.getAccumulator().get()).toBe(-13)
+            })
+        },
+    },
+])
+
+test([
+    {
+        script: 'vvvvvvvvddddd',
+        run: (machine) => {
+            it('Accumulator is 3', () => {
+                expect(machine.getAccumulator().get()).toBe(3)
+            })
+        },
+    },
+    {
+        script: 'vvvvvdddddddddd',
+        run: (machine) => {
+            it('Accumulator is -2', () => {
+                expect(machine.getAccumulator().get()).toBe(-2)
+            })
+        },
+    },
+])
