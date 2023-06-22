@@ -51,10 +51,14 @@ class Operator extends AbstractExpression {
         this.machine = machine
     }
 
-    private getOperandIndex(): number | undefined {
+    protected getOperandIndex(): number {
         if (typeof this.token[1] !== 'string') throw new NoOperandError()
         logger.trace('Getting operand %s (value = %d)', this.token[1], this.token[1].length)
         return this.token[1].length // operand는 주로 특정 문자의 길이로 주어지므로 length를 사용
+    }
+
+    protected getMachine(): Machine {
+        return this.machine
     }
 }
 
