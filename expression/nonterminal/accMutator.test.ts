@@ -1,5 +1,4 @@
 import test from '../../common/tester.ts'
-import registerOps from './index.ts'
 
 test([
     {
