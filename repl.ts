@@ -20,11 +20,11 @@ function repl(stream: Readable): Promise<number> {
         rl.prompt()
 
         // Event when input stream has data
-        rl.on('line', (script: string) => {
+        rl.on('line', async (script: string) => {
             logger.debug('Input = "%s"', script)
 
             interpreter.tokenize(script) // 입력된 script를 tokenize
-            interpreter.run() // interpreter를 실행
+            await interpreter.run() // interpreter를 실행
 
             logger.trace('Prompt to listen')
             rl.prompt()

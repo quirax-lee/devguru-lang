@@ -61,6 +61,10 @@ class Operator extends AbstractExpression {
     protected getMachine(): Machine {
         return this.machine
     }
+
+    public asyncRun(): Promise<number> {
+        return new Promise<number>((resolve) => resolve(this.run()))
+    }
 }
 
 export default Operator
