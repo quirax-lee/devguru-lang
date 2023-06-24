@@ -1,4 +1,4 @@
-import logger from '../../logger.ts'
+import logger from '../../common/logger.ts'
 import Machine from '../../machine.ts'
 import AbstractExpression from '../index.ts'
 

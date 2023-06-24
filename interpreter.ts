@@ -1,6 +1,6 @@
 import registerOps from './expression/nonterminal/index.ts'
 import Operator from './expression/nonterminal/operator.ts'
-import logger from './logger.ts'
+import logger from './common/logger.ts'
 import Machine from './machine.ts'
 
 registerOps()

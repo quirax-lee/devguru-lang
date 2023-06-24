@@ -2,7 +2,7 @@ import fs from 'node:fs'
 
 import minimist from 'minimist'
 
-import logger from './logger.ts'
+import logger from './common/logger.ts'
 import repl from './repl.ts'
 
 /**

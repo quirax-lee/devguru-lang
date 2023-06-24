@@ -1,11 +1,11 @@
 import readline from 'node:readline'
 import { Readable } from 'node:stream'
 
-import logger from './logger.ts'
+import logger from './common/logger.ts'
 
 import Interpreter from './interpreter.ts'
 
-import defaultRl from './stdio.ts'
+import defaultRl from './common/stdio.ts'
 
 function repl(stream: Readable): Promise<number> {
     return new Promise<number>((resolve, reject) => {

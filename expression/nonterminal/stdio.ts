@@ -1,6 +1,6 @@
 import { Register } from '../terminal.ts'
 import Operator from './operator.ts'
-import rl from '../../stdio.ts'
+import rl from '../../common/stdio.ts'
 
 export class StandardInput extends Operator {
     public static regexp: string = 'reuuu'
