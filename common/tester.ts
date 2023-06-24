@@ -31,9 +31,9 @@ export default function test(
         // 각각의 run 객체에 대하여
         runs.forEach(({ script, run }) => {
             describe(`Running script: ${script}`, () => {
-                it('Script runs well', () => {
+                it('Script runs well', async () => {
                     interpreter.tokenize(script) // script를 토큰화하여 machine에 등록
-                    interpreter.run() // script를 실행
+                    await interpreter.run() // script를 실행
                 })
 
                 run(machine) // Jest 스크립트를 실행

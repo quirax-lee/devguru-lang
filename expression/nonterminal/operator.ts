@@ -1,4 +1,4 @@
-import logger from '../../logger.ts'
+import logger from '../../common/logger.ts'
 import Machine from '../../machine.ts'
 import AbstractExpression from '../index.ts'
 
@@ -60,6 +60,10 @@ class Operator extends AbstractExpression {
 
     protected getMachine(): Machine {
         return this.machine
+    }
+
+    public asyncRun(): Promise<number> {
+        return new Promise<number>((resolve) => resolve(this.run()))
     }
 }
 

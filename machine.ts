@@ -1,6 +1,6 @@
 import Operator from './expression/nonterminal/operator.ts'
 import { Checkpoint, Memory, Register } from './expression/terminal.ts'
-import logger from './logger.ts'
+import logger from './common/logger.ts'
 
 /**
  * 사용자가 요청한 Memory 및 Checkpoint 등의 인덱스가 1-255를 벗어난 경우 발생

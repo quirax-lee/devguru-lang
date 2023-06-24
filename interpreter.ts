@@ -1,6 +1,6 @@
 import registerOps from './expression/nonterminal/index.ts'
 import Operator from './expression/nonterminal/operator.ts'
-import logger from './logger.ts'
+import logger from './common/logger.ts'
 import Machine from './machine.ts'
 
 registerOps()
@@ -46,13 +46,13 @@ class Interpreter {
     /**
      * machine을 가동
      */
-    public run(): void {
+    public async run(): Promise<void> {
         let op: Operator | undefined
 
         while ((op = this.machine.next())) {
             // machine으로부터 다음 명령어를 받아옴 (undefined이면 종료)
             logger.trace('Got operator %s', op.toString())
-            op.run()
+            await op.asyncRun()
         }
     }
 }

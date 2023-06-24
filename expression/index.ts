@@ -1,4 +1,4 @@
-import logger from '../logger.ts'
+import logger from '../common/logger.ts'
 
 /**
  * Expression의 기본 틀을 정의하는 클래스
