@@ -17,8 +17,8 @@ export default function registerOps() {
     Operator.register(AppointedMemSave)
     Operator.register(StandardInput)
     Operator.register(StandardOutput)
-    Operator.register(SetPointer)
-    Operator.register(LoadPointer)
     Operator.register(LoadPointeredMemory)
     Operator.register(SavePointeredMemory)
+    Operator.register(SetPointer)
+    Operator.register(LoadPointer)
 }
