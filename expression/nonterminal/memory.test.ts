@@ -35,3 +35,31 @@ test([
         },
     },
 ])
+
+test([
+    {
+        // Acc < 1일 때, Ptr = 1
+        script: '',
+        run(machine) {},
+    },
+    {
+        // 1 <= Acc <= 255일 때, Ptr = Acc
+        script: '',
+        run(machine) {},
+    },
+    {
+        // Acc > 255일 때, Ptr = 255
+        script: '',
+        run(machine) {},
+    },
+    {
+        // Ptr로 선택된 메모리에 값을 저장
+        script: '',
+        run(machine) {},
+    },
+    {
+        // Ptr로 선택된 메모리로부터 값을 로드
+        script: '',
+        run(machine) {},
+    },
+])
