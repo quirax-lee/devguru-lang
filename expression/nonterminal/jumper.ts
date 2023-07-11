@@ -1,4 +1,4 @@
-import Operator from './operator'
+import Operator from './operator.ts'
 
 export class SetCheckpoint extends Operator {
     public static regexp: string = 'eg(u+)'
@@ -29,7 +29,19 @@ export class JumpIfEqualZero extends Operator {
 
         let result = acc.get()
 
-        if (result != 0) {
+        if (result !== 0) {
+            // 선택된 체크포인트가 비어있는 경우 해당되는 체크포인트를 찾을 때까지 next 수행
+            while (ckpt.get() === 0) {
+                let opr = this.getMachine().next()
+                if (!opr) break
+                if (opr instanceof SetCheckpoint) opr.run()
+            }
+
+            if (ckpt.get() === 0) {
+                // 여전히 체크포인트가 비어 있는 경우
+                throw new SyntaxError(`Checkpoint #${operand} is not defined.`)
+            }
+
             pc.set(ckpt.get())
         }
 
