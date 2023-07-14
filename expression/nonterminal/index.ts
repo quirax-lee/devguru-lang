@@ -1,4 +1,5 @@
 import { Decrease, Increase } from './accMutator.ts'
+import { JumpIfEqualZero, SetCheckpoint } from './jumper.ts'
 import {
     AppointedMemLoad,
     AppointedMemSave,
@@ -21,4 +22,6 @@ export default function registerOps() {
     Operator.register(SavePointeredMemory)
     Operator.register(SetPointer)
     Operator.register(LoadPointer)
+    Operator.register(SetCheckpoint)
+    Operator.register(JumpIfEqualZero)
 }

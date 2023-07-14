@@ -49,10 +49,14 @@ class Interpreter {
     public async run(): Promise<void> {
         let op: Operator | undefined
 
-        while ((op = this.machine.next())) {
-            // machine으로부터 다음 명령어를 받아옴 (undefined이면 종료)
-            logger.trace('Got operator %s', op.toString())
-            await op.asyncRun()
+        try {
+            while ((op = this.machine.next())) {
+                // machine으로부터 다음 명령어를 받아옴 (undefined이면 종료)
+                logger.trace('Got operator %s', op.constructor.name)
+                await op.asyncRun()
+            }
+        } catch (e) {
+            logger.error(e.toString())
         }
     }
 }
