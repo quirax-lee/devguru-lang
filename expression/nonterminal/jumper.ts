@@ -11,7 +11,8 @@ export class SetCheckpoint extends Operator {
 
         let result = pc.get()
 
-        ckpt.set(result)
+        if (ckpt.get() !== -1) ckpt.set(result)
+        else ckpt.set(0)
 
         return result
     }
@@ -29,25 +30,30 @@ export class JumpIfNotEqualZero extends Operator {
 
         let result = acc.get()
 
-        let isIfStatement = false
+        let orig_ckpt = ckpt.get()
+
+        if (ckpt.get() === 0) ckpt.set(-1)
 
         if (result !== 0) {
             // 선택된 체크포인트가 비어있는 경우 해당되는 체크포인트를 찾을 때까지 next 수행
-            while (ckpt.get() === 0) {
-                isIfStatement = true
+            while (ckpt.get() === -1) {
                 let opr = this.getMachine().next()
                 if (!opr) break
-                if (opr instanceof SetCheckpoint) opr.run()
+                if (opr instanceof SetCheckpoint) {
+                    ckpt.set(0)
+                    opr.run()
+                    if (ckpt.get() === 0) ckpt.set(-1)
+                }
             }
 
-            if (ckpt.get() === 0) {
+            if (ckpt.get() === -1) {
                 // 여전히 체크포인트가 비어 있는 경우
                 throw new SyntaxError(`Checkpoint #${operand} is not defined.`)
             }
 
             pc.set(ckpt.get())
 
-            if (isIfStatement) ckpt.set(0)
+            ckpt.set(orig_ckpt)
         }
 
         return result

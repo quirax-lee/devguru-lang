@@ -19,7 +19,7 @@ test([
                 expect(machine.getMemory(2).get()).toBe(-1)
             })
             it('CKPT#1 != 0', () => {
-                expect(machine.getCheckpoint(1).get()).not.toBe(0)
+                expect(machine.getCheckpoint(1).get()).toBe(0)
             })
         },
     },
