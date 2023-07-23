@@ -17,7 +17,7 @@ export class SetCheckpoint extends Operator {
     }
 }
 
-export class JumpIfEqualZero extends Operator {
+export class JumpIfNotEqualZero extends Operator {
     public static regexp: string = 'er(u+)'
 
     public run(): number {
@@ -29,9 +29,12 @@ export class JumpIfEqualZero extends Operator {
 
         let result = acc.get()
 
+        let isIfStatement = false
+
         if (result !== 0) {
             // 선택된 체크포인트가 비어있는 경우 해당되는 체크포인트를 찾을 때까지 next 수행
             while (ckpt.get() === 0) {
+                isIfStatement = true
                 let opr = this.getMachine().next()
                 if (!opr) break
                 if (opr instanceof SetCheckpoint) opr.run()
@@ -43,6 +46,8 @@ export class JumpIfEqualZero extends Operator {
             }
 
             pc.set(ckpt.get())
+
+            if (isIfStatement) ckpt.set(0)
         }
 
         return result

@@ -7,13 +7,19 @@ test([
             it('M1 == 1', () => {
                 expect(machine.getMemory(1).get()).toBe(1)
             })
+            it('CKPT#1 == 0', () => {
+                expect(machine.getCheckpoint(1).get()).toBe(0)
+            })
         },
     },
     {
-        script: 'd eruu d eguu gruu',
+        script: 'd eru d egu gruu',
         run(machine) {
             it('M2 == -1', () => {
                 expect(machine.getMemory(2).get()).toBe(-1)
+            })
+            it('CKPT#1 != 0', () => {
+                expect(machine.getCheckpoint(1).get()).not.toBe(0)
             })
         },
     },
