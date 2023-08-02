@@ -9,8 +9,8 @@ const sgn =
     'eguuuuu' +
     'geuu d gruu eruuuu v eruuu' +
     'egu d' + // == 0
-    'eguu' + // > 0
-    'eguuu' // < 0
+    'eguu' + // < 0
+    'eguuu' // > 0
 
 // Case #1: positive number
 test([
