@@ -11,14 +11,14 @@ const add =
     'eguu' + // < 0
     'geuuu gru geuuuu gruu' +
     'eguuuu' +
-    'geu d gru' +
+    'geu v gru' +
     'geuu v gruu' +
     'eruuuu' +
     'v eruuuuu' +
     'eguuu' + // > 0
     'geuuu gru geuuuu gruu' +
     'eguuuu' +
-    'geu v gru' +
+    'geu d gru' +
     'geuu d gruu' +
     'eruuuu' +
     'v eruuuuu' +
@@ -27,7 +27,7 @@ const add =
     'eguuuuu' +
     'geu'
 
-// Case #1-1: (+) + (+)
+// Case #1-1: (+) - (+)
 test([
     {
         script: 'vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv',
@@ -64,14 +64,14 @@ test([
     {
         script: add,
         run: (machine) => {
-            it('Acc == 46 + 24', () => {
-                expect(machine.getAccumulator().get()).toBe(46 + 24)
+            it('Acc == 46 - 24', () => {
+                expect(machine.getAccumulator().get()).toBe(46 - 24)
             })
         },
     },
 ])
 
-// Case #1-2: (+) + 0
+// Case #1-2: (+) - 0
 test([
     {
         script: 'vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv',
@@ -108,14 +108,14 @@ test([
     {
         script: add,
         run: (machine) => {
-            it('Acc == 46 + 0', () => {
-                expect(machine.getAccumulator().get()).toBe(46 + 0)
+            it('Acc == 46 - 0', () => {
+                expect(machine.getAccumulator().get()).toBe(46 - 0)
             })
         },
     },
 ])
 
-// Case #1-3: (+) + (-)
+// Case #1-3: (+) - (-)
 test([
     {
         script: 'vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv',
@@ -152,14 +152,14 @@ test([
     {
         script: add,
         run: (machine) => {
-            it('Acc == 46 + (-69)', () => {
-                expect(machine.getAccumulator().get()).toBe(46 + -69)
+            it('Acc == 46 - (-69)', () => {
+                expect(machine.getAccumulator().get()).toBe(46 - -69)
             })
         },
     },
 ])
 
-// Case #2-1: 0 + (+)
+// Case #2-1: 0 - (+)
 test([
     {
         script: '',
@@ -196,14 +196,14 @@ test([
     {
         script: add,
         run: (machine) => {
-            it('Acc == 0 + 24', () => {
-                expect(machine.getAccumulator().get()).toBe(0 + 24)
+            it('Acc == 0 - 24', () => {
+                expect(machine.getAccumulator().get()).toBe(0 - 24)
             })
         },
     },
 ])
 
-// Case #2-2: 0 + 0
+// Case #2-2: 0 - 0
 test([
     {
         script: '',
@@ -240,14 +240,14 @@ test([
     {
         script: add,
         run: (machine) => {
-            it('Acc == 0 + 0', () => {
-                expect(machine.getAccumulator().get()).toBe(0 + 0)
+            it('Acc == 0 - 0', () => {
+                expect(machine.getAccumulator().get()).toBe(0 - 0)
             })
         },
     },
 ])
 
-// Case #2-3: 0 + (-)
+// Case #2-3: 0 - (-)
 test([
     {
         script: '',
@@ -284,14 +284,14 @@ test([
     {
         script: add,
         run: (machine) => {
-            it('Acc == 0 + (-69)', () => {
-                expect(machine.getAccumulator().get()).toBe(0 + -69)
+            it('Acc == 0 - (-69)', () => {
+                expect(machine.getAccumulator().get()).toBe(0 - -69)
             })
         },
     },
 ])
 
-// Case #3-1: (-) + (+)
+// Case #3-1: (-) - (+)
 test([
     {
         script: 'ddddddddddddddddddddddddddddddddddddd',
@@ -328,14 +328,14 @@ test([
     {
         script: add,
         run: (machine) => {
-            it('Acc == -37 + 24', () => {
-                expect(machine.getAccumulator().get()).toBe(-37 + 24)
+            it('Acc == -37 - 24', () => {
+                expect(machine.getAccumulator().get()).toBe(-37 - 24)
             })
         },
     },
 ])
 
-// Case #3-2: (-) + 0
+// Case #3-2: (-) - 0
 test([
     {
         script: 'ddddddddddddddddddddddddddddddddddddd',
@@ -372,14 +372,14 @@ test([
     {
         script: add,
         run: (machine) => {
-            it('Acc == -37 + 24', () => {
-                expect(machine.getAccumulator().get()).toBe(-37 + 0)
+            it('Acc == -37 - 24', () => {
+                expect(machine.getAccumulator().get()).toBe(-37 - 0)
             })
         },
     },
 ])
 
-// Case #3-3: (-) + (-)
+// Case #3-3: (-) - (-)
 test([
     {
         script: 'ddddddddddddddddddddddddddddddddddddd',
@@ -416,8 +416,8 @@ test([
     {
         script: add,
         run: (machine) => {
-            it('Acc == (-37) + (-69)', () => {
-                expect(machine.getAccumulator().get()).toBe(-37 + -69)
+            it('Acc == (-37) - (-69)', () => {
+                expect(machine.getAccumulator().get()).toBe(-37 - -69)
             })
         },
     },
