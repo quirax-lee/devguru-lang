@@ -2,6 +2,7 @@ import Operator from './operator.ts'
 
 export class SetCheckpoint extends Operator {
     public static regexp: string = 'eg(u+)'
+    private hasRun: boolean = false
 
     public run(): number {
         let operand = this.getOperandIndex()
@@ -13,6 +14,25 @@ export class SetCheckpoint extends Operator {
 
         if (ckpt.get() !== -1) ckpt.set(result)
         else ckpt.set(0)
+
+        this.hasRun = true
+
+        return result
+    }
+
+    public undo(): number {
+        if (!this.hasRun) return -1
+
+        let operand = this.getOperandIndex()
+
+        let ckpt = this.getMachine().getCheckpoint(operand)
+
+        let result = ckpt.get()
+
+        if (ckpt.get() !== 0) ckpt.set(0)
+        else ckpt.set(-1)
+
+        this.hasRun = false
 
         return result
     }
@@ -42,7 +62,10 @@ export class JumpIfNotEqualZero extends Operator {
                 if (opr instanceof SetCheckpoint) {
                     ckpt.set(0)
                     opr.run()
-                    if (ckpt.get() === 0) ckpt.set(-1)
+                    if (ckpt.get() === 0) {
+                        ckpt.set(-1)
+                        opr.undo()
+                    }
                 }
             }
 
