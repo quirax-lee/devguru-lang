@@ -27,6 +27,7 @@ const compare =
     'v eruuuuu' +
     'egu' + // == 0
     'geuuu gru' +
+    'v eruuuuu' +
     'eguuuuu' +
     'geu' +
     // Compare Acc and 0
