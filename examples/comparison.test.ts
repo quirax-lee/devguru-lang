@@ -1,6 +1,9 @@
 import test from '../common/tester'
 
-const subtract =
+const compare =
+    // Calculate M5 - M6
+    'geuuuuu gruuu' +
+    'geuuuuuu gruuuu' +
     'geuuuu eruuuuuu v eru' +
     'eguuuuuu' +
     'gru gruu' +
@@ -25,9 +28,21 @@ const subtract =
     'egu' + // == 0
     'geuuu gru' +
     'eguuuuu' +
-    'geu'
+    'geu' +
+    // Compare Acc and 0
+    'gruuu' +
+    'geuuu eruuuuuu v eru' +
+    'eguuuuuu' +
+    'gru gruu' +
+    'eguuuu' +
+    'geu v gru eruuuuu d eruu' +
+    'eguuuuu' +
+    'geuu d gruu eruuuu v eruuu' +
+    'egu d' + // == 0
+    'eguu' + // < 0
+    'eguuu' // > 0
 
-// Case #1-1: (+) - (+)
+// Case #1-1: (+) vs (+)
 test([
     {
         script: 'vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv',
@@ -38,10 +53,10 @@ test([
         },
     },
     {
-        script: 'gruuu',
+        script: 'gruuuuu',
         run: (machine) => {
-            it('M3 == 46', () => {
-                expect(machine.getMemory(3).get()).toBe(46)
+            it('M5 == 46', () => {
+                expect(machine.getMemory(5).get()).toBe(46)
             })
         },
     },
@@ -54,24 +69,24 @@ test([
         },
     },
     {
-        script: 'gruuuu',
+        script: 'gruuuuuu',
         run: (machine) => {
-            it('M4 == 24', () => {
-                expect(machine.getMemory(4).get()).toBe(24)
+            it('M6 == 24', () => {
+                expect(machine.getMemory(6).get()).toBe(24)
             })
         },
     },
     {
-        script: subtract,
+        script: compare,
         run: (machine) => {
-            it('Acc == 46 - 24', () => {
-                expect(machine.getAccumulator().get()).toBe(46 - 24)
+            it('46 > 24', () => {
+                expect(machine.getAccumulator().get()).toBe(1)
             })
         },
     },
 ])
 
-// Case #1-2: (+) - 0
+// Case #1-2: (+) vs 0
 test([
     {
         script: 'vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv',
@@ -82,10 +97,10 @@ test([
         },
     },
     {
-        script: 'gruuu',
+        script: 'gruuuuu',
         run: (machine) => {
-            it('M3 == 46', () => {
-                expect(machine.getMemory(3).get()).toBe(46)
+            it('M5 == 46', () => {
+                expect(machine.getMemory(5).get()).toBe(46)
             })
         },
     },
@@ -98,24 +113,24 @@ test([
         },
     },
     {
-        script: 'gruuuu',
+        script: 'gruuuuuu',
         run: (machine) => {
-            it('M4 == 0', () => {
-                expect(machine.getMemory(4).get()).toBe(0)
+            it('M6 == 0', () => {
+                expect(machine.getMemory(6).get()).toBe(0)
             })
         },
     },
     {
-        script: subtract,
+        script: compare,
         run: (machine) => {
-            it('Acc == 46 - 0', () => {
-                expect(machine.getAccumulator().get()).toBe(46 - 0)
+            it('46 > 0', () => {
+                expect(machine.getAccumulator().get()).toBe(1)
             })
         },
     },
 ])
 
-// Case #1-3: (+) - (-)
+// Case #1-3: (+) vs (-)
 test([
     {
         script: 'vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv',
@@ -126,10 +141,10 @@ test([
         },
     },
     {
-        script: 'gruuu',
+        script: 'gruuuuu',
         run: (machine) => {
-            it('M3 == 46', () => {
-                expect(machine.getMemory(3).get()).toBe(46)
+            it('M5 == 46', () => {
+                expect(machine.getMemory(5).get()).toBe(46)
             })
         },
     },
@@ -142,24 +157,24 @@ test([
         },
     },
     {
-        script: 'gruuuu',
+        script: 'gruuuuuu',
         run: (machine) => {
-            it('M4 == -69', () => {
-                expect(machine.getMemory(4).get()).toBe(-69)
+            it('M6 == -69', () => {
+                expect(machine.getMemory(6).get()).toBe(-69)
             })
         },
     },
     {
-        script: subtract,
+        script: compare,
         run: (machine) => {
-            it('Acc == 46 - (-69)', () => {
-                expect(machine.getAccumulator().get()).toBe(46 - -69)
+            it('46 > (-69)', () => {
+                expect(machine.getAccumulator().get()).toBe(1)
             })
         },
     },
 ])
 
-// Case #2-1: 0 - (+)
+// Case #2-1: 0 vs (+)
 test([
     {
         script: '',
@@ -170,10 +185,10 @@ test([
         },
     },
     {
-        script: 'gruuu',
+        script: 'gruuuuu',
         run: (machine) => {
-            it('M3 == 0', () => {
-                expect(machine.getMemory(3).get()).toBe(0)
+            it('M5 == 0', () => {
+                expect(machine.getMemory(5).get()).toBe(0)
             })
         },
     },
@@ -186,24 +201,24 @@ test([
         },
     },
     {
-        script: 'gruuuu',
+        script: 'gruuuuuu',
         run: (machine) => {
-            it('M4 == 24', () => {
-                expect(machine.getMemory(4).get()).toBe(24)
+            it('M6 == 24', () => {
+                expect(machine.getMemory(6).get()).toBe(24)
             })
         },
     },
     {
-        script: subtract,
+        script: compare,
         run: (machine) => {
             it('Acc == 0 - 24', () => {
-                expect(machine.getAccumulator().get()).toBe(0 - 24)
+                expect(machine.getAccumulator().get()).toBe(-1)
             })
         },
     },
 ])
 
-// Case #2-2: 0 - 0
+// Case #2-2: 0 vs 0
 test([
     {
         script: '',
@@ -214,10 +229,10 @@ test([
         },
     },
     {
-        script: 'gruuu',
+        script: 'gruuuuu',
         run: (machine) => {
-            it('M3 == 0', () => {
-                expect(machine.getMemory(3).get()).toBe(0)
+            it('M5 == 0', () => {
+                expect(machine.getMemory(5).get()).toBe(0)
             })
         },
     },
@@ -230,24 +245,24 @@ test([
         },
     },
     {
-        script: 'gruuuu',
+        script: 'gruuuuuu',
         run: (machine) => {
-            it('M4 == 0', () => {
-                expect(machine.getMemory(4).get()).toBe(0)
+            it('M6 == 0', () => {
+                expect(machine.getMemory(6).get()).toBe(0)
             })
         },
     },
     {
-        script: subtract,
+        script: compare,
         run: (machine) => {
             it('Acc == 0 - 0', () => {
-                expect(machine.getAccumulator().get()).toBe(0 - 0)
+                expect(machine.getAccumulator().get()).toBe(0)
             })
         },
     },
 ])
 
-// Case #2-3: 0 - (-)
+// Case #2-3: 0 vs (-)
 test([
     {
         script: '',
@@ -258,10 +273,10 @@ test([
         },
     },
     {
-        script: 'gruuu',
+        script: 'gruuuuu',
         run: (machine) => {
-            it('M3 == 0', () => {
-                expect(machine.getMemory(3).get()).toBe(0)
+            it('M5 == 0', () => {
+                expect(machine.getMemory(5).get()).toBe(0)
             })
         },
     },
@@ -274,24 +289,24 @@ test([
         },
     },
     {
-        script: 'gruuuu',
+        script: 'gruuuuuu',
         run: (machine) => {
-            it('M4 == -69', () => {
-                expect(machine.getMemory(4).get()).toBe(-69)
+            it('M6 == -69', () => {
+                expect(machine.getMemory(6).get()).toBe(-69)
             })
         },
     },
     {
-        script: subtract,
+        script: compare,
         run: (machine) => {
             it('Acc == 0 - (-69)', () => {
-                expect(machine.getAccumulator().get()).toBe(0 - -69)
+                expect(machine.getAccumulator().get()).toBe(1)
             })
         },
     },
 ])
 
-// Case #3-1: (-) - (+)
+// Case #3-1: (-) vs (+)
 test([
     {
         script: 'ddddddddddddddddddddddddddddddddddddd',
@@ -302,10 +317,10 @@ test([
         },
     },
     {
-        script: 'gruuu',
+        script: 'gruuuuu',
         run: (machine) => {
-            it('M3 == -37', () => {
-                expect(machine.getMemory(3).get()).toBe(-37)
+            it('M5 == -37', () => {
+                expect(machine.getMemory(5).get()).toBe(-37)
             })
         },
     },
@@ -318,24 +333,24 @@ test([
         },
     },
     {
-        script: 'gruuuu',
+        script: 'gruuuuuu',
         run: (machine) => {
-            it('M4 == 24', () => {
-                expect(machine.getMemory(4).get()).toBe(24)
+            it('M6 == 24', () => {
+                expect(machine.getMemory(6).get()).toBe(24)
             })
         },
     },
     {
-        script: subtract,
+        script: compare,
         run: (machine) => {
             it('Acc == -37 - 24', () => {
-                expect(machine.getAccumulator().get()).toBe(-37 - 24)
+                expect(machine.getAccumulator().get()).toBe(-1)
             })
         },
     },
 ])
 
-// Case #3-2: (-) - 0
+// Case #3-2: (-) vs 0
 test([
     {
         script: 'ddddddddddddddddddddddddddddddddddddd',
@@ -346,10 +361,10 @@ test([
         },
     },
     {
-        script: 'gruuu',
+        script: 'gruuuuu',
         run: (machine) => {
-            it('M3 == -37', () => {
-                expect(machine.getMemory(3).get()).toBe(-37)
+            it('M5 == -37', () => {
+                expect(machine.getMemory(5).get()).toBe(-37)
             })
         },
     },
@@ -362,24 +377,24 @@ test([
         },
     },
     {
-        script: 'gruuuu',
+        script: 'gruuuuuu',
         run: (machine) => {
-            it('M4 == 0', () => {
-                expect(machine.getMemory(4).get()).toBe(0)
+            it('M6 == 0', () => {
+                expect(machine.getMemory(6).get()).toBe(0)
             })
         },
     },
     {
-        script: subtract,
+        script: compare,
         run: (machine) => {
             it('Acc == -37 - 24', () => {
-                expect(machine.getAccumulator().get()).toBe(-37 - 0)
+                expect(machine.getAccumulator().get()).toBe(-1)
             })
         },
     },
 ])
 
-// Case #3-3: (-) - (-)
+// Case #3-3: (-) vs (-)
 test([
     {
         script: 'ddddddddddddddddddddddddddddddddddddd',
@@ -390,10 +405,10 @@ test([
         },
     },
     {
-        script: 'gruuu',
+        script: 'gruuuuu',
         run: (machine) => {
-            it('M3 == -37', () => {
-                expect(machine.getMemory(3).get()).toBe(-37)
+            it('M5 == -37', () => {
+                expect(machine.getMemory(5).get()).toBe(-37)
             })
         },
     },
@@ -406,18 +421,18 @@ test([
         },
     },
     {
-        script: 'gruuuu',
+        script: 'gruuuuuu',
         run: (machine) => {
-            it('M4 == -69', () => {
-                expect(machine.getMemory(4).get()).toBe(-69)
+            it('M6 == -69', () => {
+                expect(machine.getMemory(6).get()).toBe(-69)
             })
         },
     },
     {
-        script: subtract,
+        script: compare,
         run: (machine) => {
             it('Acc == (-37) - (-69)', () => {
-                expect(machine.getAccumulator().get()).toBe(-37 - -69)
+                expect(machine.getAccumulator().get()).toBe(1)
             })
         },
     },
