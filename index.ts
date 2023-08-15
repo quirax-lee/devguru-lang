@@ -9,7 +9,9 @@ import repl from './repl.ts'
  * Main function when launched this file directly
  */
 async function main() {
-    logger.level = 'trace'
+    logger.level = process.env.NODE_ENV === 'production' ? 'warn' : 'trace'
+
+    logger.debug('NODE_ENV = %s', process.env.NODE_ENV)
 
     logger.info('Starting devguru-lang interpreter')
 
