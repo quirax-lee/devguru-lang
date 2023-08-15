@@ -21,35 +21,31 @@ function repl(stream: Readable): Promise<number> {
             rl = readline.createInterface({
                 input: stream,
                 output: process.stdout,
+                terminal: false,
             })
         }
 
-        logger.trace('Prompt to listen')
-        rl.setPrompt('> ')
-        rl.prompt()
+        ;(async () => {
+            for await (const script of rl) {
+                logger.debug('Input = "%s"', script)
 
-        async function onLine(script: string) {
-            logger.debug('Input = "%s"', script)
+                interpreter.tokenize(script) // 입력된 script를 tokenize
+                await interpreter.run() // interpreter를 실행
 
-            interpreter.tokenize(script) // 입력된 script를 tokenize
-            rl.off('line', onLine)
-            await interpreter.run() // interpreter를 실행
-            rl.on('line', onLine)
+                if (rl.terminal) {
+                    logger.trace('Prompt to listen')
+                    rl.setPrompt('> ')
+                } else {
+                    rl.setPrompt('')
+                }
+                rl.prompt()
+            }
 
-            logger.trace('Prompt to listen')
-            rl.setPrompt('> ')
-            rl.prompt()
-        }
-
-        // Event when input stream has data
-        rl.on('line', onLine)
-
-        rl.on('close', () => {
             console.log() // Add a line feed after prompt
             logger.info('End of stream')
 
             resolve(0)
-        })
+        })()
     })
 }
 
